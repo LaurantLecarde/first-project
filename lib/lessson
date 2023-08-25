@@ -1,0 +1,148 @@
+import 'package:flutter/material.dart';
+
+class MyPage extends StatefulWidget{
+  const MyPage({super.key});
+  @override
+  State<MyPage> createState() => _MyPageState();
+}
+class _MyPageState extends State<MyPage> {
+  Color _color = Color(0xFFFF0000);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: _color,
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _showMyDialog(context);
+            });
+          },
+          child: const Text('Edit Color'),
+        ),
+      ),
+    );
+  }
+  _showMyDialog(BuildContext context){
+    showDialog(context: context, builder: (context) {
+      return AlertDialog(
+        actions: [
+          Column(
+            children: [
+              ElevatedButton(onPressed: () {
+                setState(() {
+                  _color = Colors.blue;
+                  Navigator.of(context).pop();
+                });
+              },child: Text('Blue'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(onPressed: () {
+                setState(() {
+                  _color = Colors.green;
+                  Navigator.of(context).pop();
+                });
+              },child: Text('Green'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(onPressed: () {
+                setState(() {
+                  _color = Colors.yellow;
+                  Navigator.of(context).pop();
+                });
+              },child: Text('Yellow'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(onPressed: () {
+                setState(() {
+                  _color = Colors.grey;
+                  Navigator.of(context).pop();
+                });
+              },child: Text('Grey'),
+              ),
+            ],
+          ),
+        ],
+      );
+    });
+  }
+}
+
+      appBar: AppBar(title: const Text('My chats')),
+      body: ListView.builder(
+          itemCount: userList.length,
+          itemBuilder: (context, index){
+        User user = userList[index];
+        return ListTile(
+          leading: CircleAvatar(
+            foregroundImage: NetworkImage(user.image),
+            radius: 35,
+          ),
+          title: Text(user.name,style: TextStyle(color: Colors.black),),
+          subtitle: Text(user.email),
+        );
+      }),
+
+    return Drawer(
+      child: Column(
+        children: [
+          const UserAccountsDrawerHeader(
+            currentAccountPicture: CircleAvatar(
+              foregroundImage: AssetImage('assets/img/img.jpg'),),
+              accountName: Text('Laurant Lecarde'),
+              accountEmail: Text('laurantlecarde@gmail.com')),
+          Container(
+            height: 2,
+            width: 300,
+            color: Colors.grey,
+          ),
+          ListTile(
+            leading: Icon(Icons.store_mall_directory),
+            title: Text('My files'),
+          ),
+          ListTile(
+            leading: Icon(Icons.people),
+            title: Text('Shared with friends'),
+          ),
+          ListTile(
+            leading: Icon(Icons.star),
+            title: Text('Starred'),
+          ),
+          ListTile(
+            leading: Icon(CupertinoIcons.clock),
+            title: Text('Recent'),
+          ),
+          ListTile(
+            leading: Icon(Icons.download_done),
+            title: Text('Offline'),
+          ),
+          ListTile(
+            leading: Icon(Icons.upload),
+            title: Text('Uploads'),
+          ),
+          ListTile(
+            leading: Icon(Icons.backup),
+            title: Text('Backups'),
+          ),
+          ListTile(
+            leading: Icon(CupertinoIcons.trash),
+            title: Text('Trash'),
+          ),
+          Container(
+            height: 2,
+            width: 300,
+            color: Colors.grey,
+          ),
+          ListTile(
+            leading: Icon(CupertinoIcons.settings),
+            title: Text('Account & Settings'),
+          ),
+        ],
+      ),
+    );
